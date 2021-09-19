@@ -69,7 +69,7 @@ int main(void)
                 continue;
             }  
             else 
-                board[x][y] == 'O';
+                board[x][y] = (k % 2 == 0) ? 'X' : 'O';
             
         }
         //(3)컴퓨터가 자동으로 다음 수 결정하는 알고리즘-비어있는 첫번째 좌표에 넣기
