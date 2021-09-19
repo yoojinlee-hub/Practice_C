@@ -20,7 +20,7 @@ int win(char board[][3],int rowSize) {
         i++;
     }
     //세로검사 - j가 끝도 없이 늘어남(두번째 반복문에서)
-    for (j = 0; j < 3; i++) {
+   while(j<3) {
         cnt = 0;
         for (i = 0; i < 2; j++) {
             if (board[i][j] == 'X' || board[i][j] == 'O') {
@@ -28,10 +28,10 @@ int win(char board[][3],int rowSize) {
                     cnt++;
                 if (cnt >= 2)
                     return 1;
-                if (j > 3)
-                    break;
+        
             }
         }
+        j++;
     }
     //대각선 검사
     if (board[0][0] != ' ' || board[1][1] == ' ' || board[2][2] != ' ') {
@@ -73,11 +73,12 @@ int main(void)
             
         }
         //(3)컴퓨터가 자동으로 다음 수 결정하는 알고리즘-비어있는 첫번째 좌표에 넣기
+        //여기가 문제!
         if (k % 2 == 1) {
             for(i=0;i<3;i++)
                 for (j = 0; j < 3; j++) {
                     if (board[i][j] == ' ') {
-                        board[i][j] == 'O';
+                        board[x][y] = (k % 2 == 0) ? 'X' : 'O';
                         break;
                     }
                 }
