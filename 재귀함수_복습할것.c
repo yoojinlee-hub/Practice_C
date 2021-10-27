@@ -23,7 +23,8 @@ int sum(int n) {
 		if (cnt % n == 0)
 			printf("\n");
 		return temp + sum(n - 1);
-	}*/
+	}
+	*/
 	int result;
 	if (n == 0)
 		result = 0;
