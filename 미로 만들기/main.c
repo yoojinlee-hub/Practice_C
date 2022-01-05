@@ -2,6 +2,9 @@
 
 #include "header.h"
 
+
+
+void MoveMaze();
 int main(void)
 {
     char level;
@@ -18,5 +21,6 @@ int main(void)
     while (1)
     {
         PrintMazeGame();
+        MoveMaze();
     }
 }
