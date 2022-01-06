@@ -2,11 +2,9 @@
 
 #include "header.h"
 
-
-
-void MoveMaze();
 int main(void)
 {
+    int row = 2, col = 1;
     char level;
     CursorView(0);
 
@@ -21,6 +19,6 @@ int main(void)
     while (1)
     {
         PrintMazeGame();
-        MoveMaze();
+        MoveMaze(&row, &col);
     }
 }

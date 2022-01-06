@@ -1,11 +1,5 @@
 // header.c
 #include "header.h"
-#include <conio.h>
-#define LEFT 75
-#define RIGHT 77
-#define UP 72
-#define DOWN 80
-#define ARROW 224
 
 
 void LoadMaze(char num)
@@ -66,39 +60,93 @@ void CursorView(char show)
     ConsoleCursor.dwSize = 1;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &ConsoleCursor);
 }
-void MoveMaze()
+
+void MoveMaze(int* row, int* col)
 {
     int nkey;
+
 
     if (_kbhit())
     {
         nkey = _getch();
 
-        if (nkey == ARROW)
+        if (nkey == 224)
         {
             nkey = _getch();
             switch (nkey)
             {
             case UP:
-                printf("위 ");
+                if (!(IsBlock(*row - 1, *col)))
+                {
+                    maze[*row][*col] = '0';
+                    maze[*row - 1][*col] = 'x';
+                    *row -= 1;
+                }
+                else if (IsFinish(*row - 1, *col))
+                {
+                    exit(0);
+                }
                 break;
 
             case DOWN:
-                printf("아래 ");
+                if (!(IsBlock(*row + 1, *col)))
+                {
+                    maze[*row][*col] = '0';
+                    maze[*row + 1][*col] = 'x';
+                    *row += 1;
+                }
+                else if (IsFinish(*row + 1, *col))
+                {
+                    exit(0);
+                }
                 break;
 
             case LEFT:
-                printf("왼쪽 ");
+                if (!(IsBlock(*row, *col - 1)))
+                {
+                    maze[*row][*col] = '0';
+                    maze[*row][*col - 1] = 'x';
+                    *col -= 1;
+                }
+                else if (IsFinish(*row, *col - 1))
+                {
+                    exit(0);
+                }
                 break;
 
             case RIGHT:
-                printf("오른쪽 ");
+                if (!(IsBlock(*row, *col + 1)))
+                {
+                    maze[*row][*col] = '0';
+                    maze[*row][*col + 1] = 'x';
+                    *col += 1;
+                }
+                else if (IsFinish(*row, *col + 1))
+                {
+                    exit(0);
+                }
                 break;
             }
         }
-
     }
+}
 
+int IsBlock(int i, int j)
+{
+
+    if (maze[i][j] == '1' || maze[i][j] == 'y')
+        return 1;
+    else
+        return 0;
+}
+
+int IsFinish(int i, int j)
+{
+
+    if (maze[i][j] == 'y')
+        return 1;
+    else
+        return 0;
 }
 /*
 void MoveMaze(현재 플레이어의 위치좌표 (x), (y) 포인터 )
