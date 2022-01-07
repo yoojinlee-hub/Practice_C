@@ -1,7 +1,6 @@
 // header.c
 #include "header.h"
 
-
 void LoadMaze(char num)
 {
     char path[20] = "./Maze";
@@ -61,11 +60,10 @@ void CursorView(char show)
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &ConsoleCursor);
 }
 
+
 void MoveMaze(int* row, int* col)
 {
     int nkey;
-
-
     if (_kbhit())
     {
         nkey = _getch();
@@ -84,7 +82,10 @@ void MoveMaze(int* row, int* col)
                 }
                 else if (IsFinish(*row - 1, *col))
                 {
-                    exit(0);
+                    maze[*row][*col] = '0';
+                    maze[*row - 1][*col] = 'x';
+                    PrintMazeGame();
+                    Complete();
                 }
                 break;
 
@@ -97,7 +98,10 @@ void MoveMaze(int* row, int* col)
                 }
                 else if (IsFinish(*row + 1, *col))
                 {
-                    exit(0);
+                    maze[*row][*col] = '0';
+                    maze[*row + 1][*col] = 'x';
+                    PrintMazeGame();
+                    Complete();
                 }
                 break;
 
@@ -110,7 +114,10 @@ void MoveMaze(int* row, int* col)
                 }
                 else if (IsFinish(*row, *col - 1))
                 {
-                    exit(0);
+                    maze[*row][*col] = '0';
+                    maze[*row][*col - 1] = 'x';
+                    PrintMazeGame();
+                    Complete();
                 }
                 break;
 
@@ -123,6 +130,10 @@ void MoveMaze(int* row, int* col)
                 }
                 else if (IsFinish(*row, *col + 1))
                 {
+                    maze[*row][*col] = '0';
+                    maze[*row][*col + 1] = 'x';
+                    PrintMazeGame();
+                    Complete();
                     exit(0);
                 }
                 break;
@@ -133,7 +144,6 @@ void MoveMaze(int* row, int* col)
 
 int IsBlock(int i, int j)
 {
-
     if (maze[i][j] == '1' || maze[i][j] == 'y')
         return 1;
     else
@@ -142,11 +152,22 @@ int IsBlock(int i, int j)
 
 int IsFinish(int i, int j)
 {
-
     if (maze[i][j] == 'y')
         return 1;
     else
         return 0;
+}
+
+void Complete()
+{
+    end = clock();
+    res = (float)(end - start) / CLOCKS_PER_SEC;
+
+    GotoXY(XP, YP + SIZE);
+    printf("Complete!\n");
+    GotoXY(XP, YP + SIZE + 1);
+    printf("경과시간 : %.2f초", res);
+    exit(0);
 }
 /*
 void MoveMaze(현재 플레이어의 위치좌표 (x), (y) 포인터 )
