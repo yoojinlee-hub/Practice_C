@@ -27,14 +27,15 @@ int main(void) {
 	//연속된 문자열
 	for (i = 0; i<=strlen(input);) {
 		strcpy(nums, "");
-		for (j = 0; j < strlen(input); j++) {//새로운 인덱스
+		strcat(nums, "\0");
+		for (j = 0; j < strlen(input); j++) {
 			strncpy(nums, input, k++);
+			nums[k - 1] = '\0';
 			num = isitPrime(atoi(nums));
 			if (num == 1 && atoi(nums) >= ans && atoi(nums) > 1)
 				ans = atoi(nums);
 		}
 		RemoveFirst(input);
-		//i를 초기화해줘야 함
 		i = count++; k = 1;
 	}
 	printf("%d", ans);
