@@ -10,33 +10,14 @@ numbers에서 찾을 수 없는 0부터 9까지의 숫자를 모두 찾아
 */
 // numbers_len은 배열 numbers의 길이입니다.
 int solution(int numbers[], size_t numbers_len) {
-    int answer = -1, num = 0;
-    int onetoten[9], index[9] = { 0 };
-    int i, j, k = 0;
-    for (i = 0; i < 9; i++) 
-        onetoten[i] = i + 1;
-    
-    for (i = 0; i < 9; i++) {
-        answer = -1;
-        if(numbers[i]>0){
-            for (j = 0; j < 9; j++)
-                if (numbers[i] == onetoten[j]) {
-                    answer = 1;
-                    break;
-            } 
-        }  
-        if (answer != 1) index[k++] = i;
-    }
-    answer = 0;
-    for (i = 0; i <= k; i++) {
-        num = index[i];
-        answer += onetoten[num];
-    }
-        
-    return answer;
+    int sum = 0, total = 45;
+    int i;
+    for (i = 0; i < numbers_len; i++)sum += numbers[i];
+    sum = total - sum;
+    return sum;
 }
 int main() {
     int arr[] = { 5,8,4,0,6,7,9 };
 
-    printf("%d",solution(arr, 9));
+    printf("%d",solution(arr, 6));
 }
