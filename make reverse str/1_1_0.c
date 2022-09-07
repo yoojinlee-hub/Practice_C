@@ -6,11 +6,9 @@
 
 void reverse_string(char* str, int s, int e) {
 	//재귀 사용해야함 -> 점점 범위가 줄어드는 것
-	if (s > e / 2);
+	if (s > e);
 	else {
-		char temp = str[s];
-		str[s] = str[e - s];
-		str[e - s] = temp;
+		printf("%c", str[e - s]);
 		reverse_string(str, s + 1, e);
 	}
 }
