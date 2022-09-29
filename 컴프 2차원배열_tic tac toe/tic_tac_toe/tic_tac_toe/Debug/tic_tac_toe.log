@@ -1,4 +1,0 @@
-﻿  tic_tac_toe.c
-C:\Users\User\Desktop\code 연습\c언어\컴프 2차원배열_tic tac toe\tic_tac_toe\tic_tac_toe\tic_tac_toe.c(72,29): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
-C:\Users\User\Desktop\code 연습\c언어\컴프 2차원배열_tic tac toe\tic_tac_toe\tic_tac_toe\tic_tac_toe.c(80,37): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
-  tic_tac_toe.vcxproj -> C:\Users\User\Desktop\code 연습\c언어\컴프 2차원배열_tic tac toe\tic_tac_toe\Debug\tic_tac_toe.exe
